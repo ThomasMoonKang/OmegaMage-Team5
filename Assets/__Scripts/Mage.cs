@@ -325,10 +325,16 @@ public class Mage : PT_MonoBehaviour {
 			break;
 		case ElementType.air:
 			GameObject airGO;
-			foreach( Vector3 pt in linePts ) {
+			/*foreach( Vector3 pt in linePts ) {
 				airGO = Instantiate (airGroundSpellPrefab) as GameObject;
 				airGO.transform.parent = spellAnchor;
 				airGO.transform.position = pt;
+			}*/
+			foreach( Vector3 pt in linePts ) {
+				airGO = Instantiate (airGroundSpellPrefab) as GameObject;
+				airGO.transform.parent = spellAnchor;
+				airGO.transform.position = this.transform.position-new Vector3(0,0,1);
+				airGO.GetComponent<Rigidbody>().velocity = ((pt-pos).normalized*5);
 			}
 			break;
 			//TODO: Add other elements types later
